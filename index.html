@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Demo</title>
+
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" />
+
+  <style>
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+
+<body>
+
+    <canvas id="canvas"></canvas>
+
+<script>
+
+
+    const onScreenCanvas = document.getElementById('canvas')
+    onScreenCanvas.width = window.innerWidth;
+    onScreenCanvas.height = window.innerHeight;
+    const onScreenContext = onScreenCanvas.getContext('2d');
+     // sets up our canvas a bit
+    
+    const canvas = document.createElement('canvas');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    const ctx = canvas.getContext('2d');
+
+    ctx.fillStyle = "black";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    // let t0 = new Date().getTime();
+
+    let timeClock = 0;
+
+    setInterval(() => {
+
+      onScreenContext.fillRect(0, 0, canvas.width, canvas.height);
+      onScreenContext.drawImage(canvas, 0, 0);
+      // ctx.fillRect(0, 0, canvas.width, canvas.height);
+      timeClock++;
+    }, 20);
+
+    function four () {
+        var centerx = ctx.canvas.width / 2;
+        var centery = ctx.canvas.height / 2;
+        let a=.1
+        let b=.1
+        let count = 0;
+        let angle
+        let x=centerx
+        let y=centery
+
+        let boop = .1
+        let bop = .9
+        setInterval(() => {
+          bop += 1;
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+          for (let r = 0; r <= 100; r+=8) {
+            for (let g = 0; g <= 55; g+=8) {
+              for (let b = 0; b <= 155; b+=8) {
+                
+                ctx.beginPath();
+                ctx.moveTo(x, y);
+                
+                angle = (boop*bop) * count;
+                
+                x = centerx + (a + b * angle) * Math.cos(angle);
+                y = centery + (a + b * angle) * Math.sin(angle);
+                
+                ctx.lineTo(x, y);
+                
+                ctx.strokeStyle = `RGB(${r},${g},${b})` 
+                ctx.stroke();
+                ctx.closePath()
+                
+                count += 1;
+              }
+            }
+          }
+          // console.log(count);
+        }, 50);
+
+    }
+
+    function three () {
+        var centerx = ctx.canvas.width / 2;
+        var centery = ctx.canvas.height / 2;
+        let a=.1
+        let b=.1
+        let count = 0;
+        let angle
+        let x=centerx
+        let y=centery
+
+        let boop = .1
+        let bop = .9
+        setInterval(() => {
+          bop += 1;
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+          for (let r = 0; r <= 155; r+=8) {
+            for (let g = 0; g <= 162; g+=8) {
+              for (let b = 0; b <= 135; b+=8) {
+                
+                ctx.beginPath();
+                ctx.moveTo(x, y);
+                
+                angle = (boop*bop) * count;
+                
+                x = centerx + (a +322 + b * angle) * Math.cos(angle);
+                y = centery + (a + b * angle) * Math.sin(angle);
+                
+                ctx.lineTo(x, y);
+                
+                ctx.strokeStyle = `RGB(${r},${g},${b})` 
+                ctx.stroke();
+                ctx.closePath()
+                
+                count += 1;
+              }
+            }
+          }
+
+          if (timeClock == 1300) {
+            three();
+          }
+          if (timeClock == 2000) {
+            four();
+          }
+
+          if (timeClock === 5800) {
+            clearInterval(clockThree)
+            zero()
+          }
+        }, 50);
+
+    }
+
+
+    function two () {
+        var centerx = ctx.canvas.width / 2;
+        var centery = ctx.canvas.height / 2;
+        let a=.1
+        let b=.1
+        let count = 10;
+        let x=centerx
+        let y=centery
+        
+        
+        let boop = .1
+        let bop = 1
+        let moveOn = true
+        let clockTwo = setInterval(() => {
+          bop += 1;
+          // ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+          ctx.beginPath();
+          ctx.arc(centerx, centery, count*150, 0, 2 * Math.PI, false);
+          ctx.fillStyle = 'black';
+          ctx.fill();
+          ctx.stroke();
+          ctx.closePath();
+
+            for (let r = 1; r <= 255; r+=8) {
+              for (let g = 1; g <= 255; g+=8) {
+                for (let b = 1; b <= 3; b+=8) {
+                  
+                  ctx.beginPath();
+                  ctx.moveTo(x, y);
+                  
+                  angle = (boop*bop) * count;
+                  
+                  x = centerx + (a + b * angle) * Math.cos(angle);
+                  y = centery + (a + b * angle) * Math.sin(2^-2 * angle);
+                  
+                  ctx.lineTo(x, y);
+                  
+                  ctx.strokeStyle = `RGB(${r},${g},${b})` 
+                  ctx.stroke();
+                  ctx.closePath()
+                
+                  if (count > -50) {
+                    count -= .001;
+                  } else {
+                    count += .001;
+                  }
+                
+                  if (count < .74) count = 1
+                  // if (count < .7) count = 10
+                  // if (count < .74) count = 1
+                  // console.log(count)
+                }
+              }
+            }
+          // }
+
+          if (timeClock > 1700 && moveOn) {
+            moveOn = false
+            three()
+          
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+          }
+
+
+        }, 50);
+
+    }
+
+
+    function one () {
+        
+        var centerx = ctx.canvas.width / 2;
+        var centery = ctx.canvas.height / 2;
+        let a=.1
+        let b=.1
+        let count = .00001;
+        let x=centerx
+        let y=centery
+
+        let boop = .1
+        let bop = 1
+
+        let moveOnFlag = true
+        var repeat = false;
+        let circleSize = 80
+        var clockOne = setInterval(() => {
+          
+          bop += 1;
+          // if (repeat) {
+          //   ctx.fillRect(0, 0, canvas.width, canvas.height);
+          // }
+          
+
+          for (let r = 1; r <= 255; r+=8) {
+            for (let g = 1; g <= 255; g+=8) {
+              for (let b = 1; b <= 50; b+=8) {
+                
+                ctx.beginPath();
+                ctx.moveTo(x, y);
+                
+                angle = (boop*bop) * count;
+                
+                x = centerx + (a + b * -1 * angle) * Math.cos(angle);
+                y = centery + (a + b * angle) * Math.sin(angle);
+                
+                ctx.lineTo(x, y);
+                
+                ctx.strokeStyle = `RGB(${r},${g},${b})` 
+                ctx.stroke();
+                ctx.closePath()
+
+ 
+               
+                count -= .000005;
+                
+                if (count < .75) { 
+                  count = 10
+
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    repeat = true
+                    circleSize = circleSize * 1.5
+                }
+                // if (count < .74) count = 1
+              }
+            }
+          }
+          ctx.beginPath();
+                ctx.arc(centerx, centery, circleSize, 0, 2 * Math.PI, false);
+                ctx.fillStyle = 'black';
+                ctx.fill();
+                // ctx.strokeStyle = 'black';
+                ctx.lineWidth = 1;
+                ctx.stroke();
+                ctx.closePath();
+
+
+          if (timeClock == 70) {
+            
+            two(); 
+          }
+
+          if (timeClock > 1500 && moveOnFlag) {
+            moveOnFlag = false;
+            clearInterval(clockOne);
+            // timeClock = 0
+          }
+        }, 50);
+
+    };
+
+
+    function zero () {
+        
+        var centerx = ctx.canvas.width / 2;
+        var centery = ctx.canvas.height / 2;
+        let a=.1
+        let b=.1
+        let count = .00001;
+        let x=centerx
+        let y=centery
+
+        let boop = .1
+        let bop = 1
+        var clockZero = setInterval(() => {
+          bop += 1;
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+          for (let r = 1; r <= 255; r+=8) {
+            for (let g = 1; g <= 255; g+=8) {
+              for (let b = .1; b <= 255; b+=8) {
+                
+                ctx.beginPath();
+                ctx.moveTo(x, y);
+                
+                angle = (boop*bop) * count;
+                
+                x = centerx + (a + b * -1 * angle) * Math.cos(angle);
+                y = centery + (a + b * angle) * Math.sin(angle);
+                
+                ctx.lineTo(x, y);
+                
+                ctx.strokeStyle = `RGB(${r},${g},${b})` 
+                ctx.stroke();
+                ctx.closePath()
+               
+                count -= .001;
+                
+                // if (count < .7) count = 10
+                // if (count < .74) count = 1
+                // console.log(count)
+              }
+            }
+          }
+
+
+          if (timeClock == 50) {
+            one();
+            clearInterval(clockZero);
+            // timeClockZero = 0
+            
+                      
+          }
+
+          if (timeClock === 6000) {
+            
+            clearInterval(clockZero)
+          }
+
+
+        }, 50);
+
+    };
+
+    zero();
+    
+    // let t1 = new Date().getTime();
+    // console.log(t1-t0)
+
+</script>
+
+
+</body>
+</html>
