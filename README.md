@@ -1,2 +1,2 @@
 # funfunfun
-A silly demonstration of random canvas colours and text
+A place to put some canvas demos
